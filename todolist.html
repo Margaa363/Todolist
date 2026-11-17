@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Js loop & array</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css"
+    />
+    <link rel="stylesheet" href="todo.css" />
+  </head>
+  <body>
+    <div class="all">
+      <div class="box">
+        <h1 class="garchig">✵ Todo list ✓</h1>
+        <input id="input" class="input" type="text" />
+        <button onclick="addTodo()" class="button is-danger is-light add">
+          Add
+        </button>
+        <div id="container" class="container"></div>
+        <button
+          onclick="cancelbutton()"
+          id="cancelbutton"
+          class="button is-danger is-light clear"
+        >
+          Clear all
+        </button>
+      </div>
+    </div>
+    <script>
+      let todos = [];
+
+      const input = document.getElementById("input");
+      const container = document.getElementById("container");
+
+      const addTodo = () => {
+        if (input.value === "") return;
+        todos.push(input.value);
+        renderTodo();
+        input.value = "";
+      };
+
+      const renderTodo = () => {
+        container.textContent = "";
+        for (let i = 0; i < todos.length; i++) {
+          const newDiv = document.createElement("div"); // = <div></div>
+          newDiv.textContent = i + 1 + ". " + todos[i]; //  <div>1. Untah</div>
+          newDiv.classList.add("todo"); //  <div class="todo">1. Untah</div>
+          container.appendChild(newDiv); //
+        }
+      };
+
+      let cancelbutton = () => {
+        const button2 = document.getElementById("cancelbutton");
+        todos = [];
+        renderTodo();
+      };
+    </script>
+  </body>
+</html>
